@@ -59,10 +59,10 @@ jobs:
           const response = await github.rest.repos.createRelease({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            tag_name: "${{ needs.check-version.outputs.package_name }}"-${{ needs.check-version.outputs.package_version }}",
+            tag_name: `${package_name}-${package_version}`,
             target_commitish: 'main',
-            name: "${{ needs.check-version.outputs.package_version }}",
-            body: "Release ${{ needs.check-version.outputs.package_version }}",
+            name: `${package_version}`,
+            body: `Release ${package_version}`,
             draft: false,
             prerelease: false,
           });
