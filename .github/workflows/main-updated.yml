@@ -22,7 +22,7 @@ jobs:
         run: python tools/github_actions/github_actions_release.py kedro-docker/kedro_docker
       - name: Call release workflow
         if: ${{ env.new_release == 'true' }}
-        uses: ../.github/workflows/release.yml
+        uses: kedro-org/kedro-plugins/.github/workflows/release.yml
         with:
           plugin: kedro-docker
           package_name: ${{ env.package_name }}
@@ -44,7 +44,7 @@ jobs:
         run: python tools/github_actions/github_actions_release.py kedro-datasets/kedro_datasets
       - name: Call release workflow
         if: ${{ env.new_release == 'true' }}
-        uses: ../.github/workflows/release.yml
+        uses: kedro-org/kedro-plugins/.github/workflows/release.yml
         with:
           plugin: kedro-datasets
           package_name: ${{ env.package_name }}
@@ -66,7 +66,7 @@ jobs:
         run: python tools/github_actions/github_actions_release.py kedro-airflow/kedro_airflow
       - name: Call release workflow
         if: ${{ env.new_release == 'true' }}
-        uses: ../.github/workflows/release.yml
+        uses: kedro-org/kedro-plugins/.github/workflows/release.yml
         with:
           plugin: kedro-airflow
           package_name: ${{ env.package_name }}
@@ -88,7 +88,7 @@ jobs:
         run: python tools/github_actions/github_actions_release.py kedro-telemetry/kedro_telemetry
       - name: Call release workflow
         if: ${{ env.new_release == 'true' }}
-        uses: ../.github/workflows/release.yml
+        uses: kedro-org/kedro-plugins/.github/workflows/release.yml
         with:
           plugin: kedro-telemetry
           package_name: ${{ env.package_name }}
