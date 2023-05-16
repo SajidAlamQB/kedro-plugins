@@ -13,8 +13,8 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/check-plugin.yml
-      with:
-        plugin: ${{ inputs.plugin }}
+    with:
+      plugin: ${{ inputs.plugin }}
 
   build and release:
     needs: [test]
