@@ -1,0 +1,79 @@
+name: Main updated
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  maybe-trigger-release-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Check if kedro-docker needs to be released
+        run: python tools/github_actions/github_actions_release.py kedro-docker/kedro_docker
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: .github/workflows/release.yml
+        with:
+          plugin: kedro-docker
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
+
+  maybe-trigger-release-datasets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Check if kedro-datasets needs to be released
+        run: python tools/github_actions/github_actions_release.py kedro-datasets/kedro_datasets
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: .github/workflows/release.yml
+        with:
+          plugin: kedro-datasets
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
+
+  maybe-trigger-release-airflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Check if kedro-airflow needs to be released
+        run: python tools/github_actions/github_actions_release.py kedro-airflow/kedro_airflow
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: .github/workflows/release.yml
+        with:
+          plugin: kedro-airflow
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
+
+  maybe-trigger-release-telemetry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Check if Telemetry needs to be released
+        run: python tools/github_actions/github_actions_release.py kedro-telemetry/telemetry
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: .github/workflows/release.yml
+        with:
+          plugin: kedro-telemetry
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
