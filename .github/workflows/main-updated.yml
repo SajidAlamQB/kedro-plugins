@@ -20,14 +20,13 @@ jobs:
           pip install requests
       - name: Check if kedro-docker needs to be released
         run: python tools/github_actions/github_actions_release.py kedro-docker/kedro_docker
-
-  release-docker:
-    if: ${{ env.new_release == 'true' }}
-    uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
-    with:
-      plugin: kedro-docker
-      package_name: ${{ env.package_name }}
-      package_version: ${{ env.package_version }}
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
+        with:
+          plugin: kedro-docker
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
 
   maybe-trigger-release-datasets:
     runs-on: ubuntu-latest
@@ -43,14 +42,13 @@ jobs:
           pip install requests
       - name: Check if kedro-datasets needs to be released
         run: python tools/github_actions/github_actions_release.py kedro-datasets/kedro_datasets
-
-  release-datasets:
-    if: ${{ env.new_release == 'true' }}
-    uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
-    with:
-      plugin: kedro-datasets
-      package_name: ${{ env.package_name }}
-      package_version: ${{ env.package_version }}
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
+        with:
+          plugin: kedro-datasets
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
 
   maybe-trigger-release-airflow:
     runs-on: ubuntu-latest
@@ -66,14 +64,13 @@ jobs:
           pip install requests
       - name: Check if kedro-airflow needs to be released
         run: python tools/github_actions/github_actions_release.py kedro-airflow/kedro_airflow
-
-  release-airflow:
-    if: ${{ env.new_release == 'true' }}
-    uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
-    with:
-      plugin: kedro-airflow
-      package_name: ${{ env.package_name }}
-      package_version: ${{ env.package_version }}
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
+        with:
+          plugin: kedro-airflow
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
 
   maybe-trigger-release-telemetry:
     runs-on: ubuntu-latest
@@ -89,11 +86,10 @@ jobs:
           pip install requests
       - name: Check if Telemetry needs to be released
         run: python tools/github_actions/github_actions_release.py kedro-telemetry/kedro_telemetry
-
-  release-telemetry:
-    if: ${{ env.new_release == 'true' }}
-    uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
-    with:
-      plugin: kedro-telemetry
-      package_name: ${{ env.package_name }}
-      package_version: ${{ env.package_version }}
+      - name: Call release workflow
+        if: ${{ env.new_release == 'true' }}
+        uses: SajidAlamQB/kedro-plugins/.github/workflows/release.yml@main
+        with:
+          plugin: kedro-telemetry
+          package_name: ${{ env.package_name }}
+          package_version: ${{ env.package_version }}
