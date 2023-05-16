@@ -51,9 +51,9 @@ jobs:
         with:
           python-version: 3.8
       - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
       - name: Check if kedro-airflow needs to be released
         run: python tools/github_actions/github_actions_release.py kedro-airflow/kedro_airflow
       - name: Call release workflow
