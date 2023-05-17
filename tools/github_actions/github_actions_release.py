@@ -43,7 +43,7 @@ if __name__ == "__main__":
         print(package_name, package_version)
         if check_no_version_pypi(pypi_endpoint, package_name, package_version):
             with open(env_file, "a") as env_file:
-                env_file.write(f"new_release=true\npackage_name={package_name}\npackage_version={package_version}\n")
+                env_file.write(f"NEW_RELEASE=true\nPACKAGE_NAME={package_name}\nPACKAGE_VERSION={package_version}\n")
             break
         else:
             with open(env_file, "a") as env_file:
