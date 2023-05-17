@@ -1,3 +1,3 @@
-"""``kedro_datasets`` is where you can find all of Kedro's data connectors."""
+"""``kedro_datasets`` is where you can find all of Kedro's data connectors.AAA"""
 
-__version__ = "5.0.2"
+__version__ = "1.2.0"
