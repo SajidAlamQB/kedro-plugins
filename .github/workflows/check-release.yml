@@ -31,8 +31,15 @@ jobs:
       package_name: ${{ steps.version_check.outputs.package_name }}
       package_version: ${{ steps.version_check.outputs.package_version }}
 
-  build-publish:
+  test:
     needs: check-version
+    if: ${{ needs.check-version.outputs.new_release == 'true' }}
+    uses: ./.github/workflows/check-plugin.yml
+    with:
+      plugin: ${{ needs.check-version.outputs.package_name }}
+
+  build-publish:
+    needs: test
     if: ${{ needs.check-version.outputs.new_release == 'true' }}
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +68,7 @@ jobs:
             repo: context.repo.repo,
             tag_name: `${package_name}-${package_version}`,
             target_commitish: 'main',
-            name: `${package_version}`,
+            name: `${package_name}-${package_version}`,
             body: `Release ${package_version}`,
             draft: false,
             prerelease: false,
