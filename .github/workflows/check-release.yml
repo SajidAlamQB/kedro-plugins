@@ -75,7 +75,6 @@ jobs:
           });
           return response.data;
     - name: Set PyPI token
-      id: set_token
       run: |
         if [ "${{ needs.check-version.outputs.PACKAGE_NAME }}" == "kedro-airflow" ]; then
           echo 'PYPI_TOKEN=${{ secrets.AIRFLOW_PYPI_TOKEN }}' >> $GITHUB_ENV
