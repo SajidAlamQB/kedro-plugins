@@ -1,3 +1,3 @@
 """Kedro plugin for collecting Kedro usage data."""
 
-__version__ = "1.2.4"
+__version__ = "9.2.4"
